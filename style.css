@@ -1,0 +1,337 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    font-family: Arial, sans-serif;
+    color: purple;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #f6f7ff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(128, 0, 128, 0.08);
+}
+
+.todo-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #b39ddb;
+    border-radius: 4px;
+    color: purple;
+}
+
+.todo-form button {
+    background: purple;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.todo-form button:hover {
+    background: #6a0dad;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #e1bee7;
+    border-radius: 6px;
+    color: purple;
+    background: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(128, 0, 128, 0.15);
+}
+
+.todo-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+    background: #f8f4fc;
+    border-color: #d1c4e9;
+    transform: translateY(0);
+    animation: dropDown 0.6s ease-out forwards;
+}
+
+.todo-item.dropping {
+    animation: smoothDrop 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.todo-item.rising {
+    animation: smoothRise 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dropDown {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(10px) scale(0.98);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(20px) scale(0.96);
+        opacity: 0.6;
+    }
+}
+
+@keyframes smoothDrop {
+    0% {
+        transform: translateY(-10px) scale(1.02);
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: translateY(5px) scale(0.99);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes smoothRise {
+    0% {
+        transform: translateY(20px) scale(0.96);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-5px) scale(1.02);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.todo-item.fade-in {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: translateX(-20px) scale(0.95);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50px) scale(0.8);
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.todo-item input[type="checkbox"] {
+    margin-right: 12px;
+    accent-color: purple;
+}
+
+.todo-text {
+    flex: 1;
+}
+
+.delete-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+}
+
+.todo-stats {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.stat-card {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+    border-radius: 12px;
+    z-index: -1;
+    animation: borderAnimation 3s linear infinite;
+    opacity: 0;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.stat-card.completed-card {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 4px 15px rgba(56, 239, 125, 0.3);
+}
+
+.stat-card.completed-card:hover {
+    box-shadow: 0 8px 25px rgba(56, 239, 125, 0.4);
+}
+
+.stat-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 8px 0 4px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+@keyframes borderAnimation {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.progress-ring {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    position: relative;
+}
+
+.progress-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+
+}
+
+.progress-ring circle {
+    fill: none;
+    stroke-width: 4;
+    r: 26;
+    cx: 30;
+    cy: 30;
+}
+
+.progress-ring .bg-circle {
+    stroke: rgba(255, 255, 255, 0.2);
+}
+
+.progress-ring .progress-circle {
+    stroke: white;
+    stroke-linecap: round;
+    stroke-dasharray: 164;
+    stroke-dashoffset: 164;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.clear-completed,
+.clear-all {
+    background: #fff;
+    color: purple;
+    border: 1px solid purple;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.clear-completed:hover,
+.clear-all:hover {
+    background: purple;
+    color: #fff;
+}           

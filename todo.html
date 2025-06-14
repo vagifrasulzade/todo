@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="todo-app">
+        <header>
+            <h1>To Do List</h1>
+            <p>Welcome to the Todo App!</p>
+        </header>
+
+        <form class="todo-form">
+            <input type="text" class="todo-input" placeholder="Add a new task" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <ul class="todo-list">
+            <!-- <li class="todo-item completed">
+                <input type="checkbox" >
+                <span class="todo-text">ahsdkjsahkjd</span>
+                <button class="delete-btn">Delete</button>
+
+            </li> -->
+            <!-- Tasks will be dynamically added here -->
+        </ul>
+
+        <div class="todo-stats">
+            <div class="stat-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg-circle"></circle>
+                        <circle class="progress-circle" id="total-progress"></circle>
+                    </svg>
+                    <div class="stat-icon">📋</div>
+                </div>
+                <div class="stat-number total-tasks">0</div>
+                <p class="stat-label">Total Tasks</p>
+            </div>
+
+            <div class="stat-card completed-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg-circle"></circle>
+                        <circle class="progress-circle" id="completed-progress"></circle>
+                    </svg>
+                    <div class="stat-icon">✅</div>
+                </div>
+                <div class="stat-number completed-tasks">0</div>
+                <p class="stat-label">Completed</p>
+            </div>
+        </div>
+
+        <button class="clear-completed">Clear Completed</button>
+        <button class="clear-all">Clear All</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

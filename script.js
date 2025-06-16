@@ -1,3 +1,12 @@
+// const initialTasks = [
+//     "Buy milk",
+//     "Buy phone",
+//     "Buy tomatoes",
+//     "Buy potatoes",
+//     "Buy yogurt",
+// ];
+  
+
 let todos = []
 let nextId = 1
 
@@ -184,10 +193,7 @@ function clearAll() {
     setTimeout(() => {
         todos = []
         saveTodos()
-        // todoList.innerHTML = ""
-        // updateStats()
-        // totalTasksSpan.textContent = 0
-        // renderAllTodos(true)
+        renderAllTodos(false)
     }, allElements.length * 100 + 300);
 }
 
